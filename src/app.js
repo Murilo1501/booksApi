@@ -1,4 +1,15 @@
 import express from 'express'
+import connect from './config/connectDb.js'
+
+const conn = await connect()
+
+conn.on("error",(error) => {
+    console.error("erro de conexão",error)
+})
+
+conn.once("open",()=>{
+    console.log("Conexão feita com sucesso")
+})
 
 const app = express()
 app.use(express.json())
@@ -51,5 +62,7 @@ app.delete("/books/:id",(req,res) => {
     books.splice(index,1)
     res.status(200).json(books)
 })
+
+
 
 export default app;
