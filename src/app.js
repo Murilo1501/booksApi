@@ -1,29 +1,15 @@
 const express =  require('express')
-const connection = require('./config/connectDb')
+const books  = require('./Models/Book')
 
 
-  connection.query('SELECT * FROM users', (err, results) => {
-    if (err) throw err;
-  
-    console.log('Resultados da consulta:', results);
-  });
 
 
 const app = express()
 app.use(express.json())
 
-const books = [
-    {
-        id:1,
-        title:"Vikings"
-    },
-
-    {
-        id:2,
-        title:"Percy Jackson"
-    }
-   
-]
+array = {
+    "id":"1"
+}
 
 function searchBook(id){
     return books.findIndex(books =>{
@@ -35,9 +21,7 @@ app.get('/',(req,res) =>{
     res.status(200).send('curso de node.js')
 })
 
-app.get('/books',(req,res)=>{
-    res.status(200).json(books)
-})
+
 
 app.post('/books',(req,res) => {
     books.push(req.body)
