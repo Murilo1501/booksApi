@@ -1,15 +1,13 @@
-import express from 'express'
-import connect from './config/connectDb.js'
+const express =  require('express')
+const connection = require('./config/connectDb')
 
-const conn = await connect()
 
-conn.on("error",(error) => {
-    console.error("erro de conexão",error)
-})
+  connection.query('SELECT * FROM users', (err, results) => {
+    if (err) throw err;
+  
+    console.log('Resultados da consulta:', results);
+  });
 
-conn.once("open",()=>{
-    console.log("Conexão feita com sucesso")
-})
 
 const app = express()
 app.use(express.json())
@@ -65,4 +63,4 @@ app.delete("/books/:id",(req,res) => {
 
 
 
-export default app;
+module.exports = app;

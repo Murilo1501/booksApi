@@ -1,13 +1,14 @@
-import mongoose from 'mongoose'
+const mysql = require('mysql')
 
-async function connect()
-{
-    mongoose.connect("//mongodb+srv://falconeri1501:admin123@cluster0.aposu55.mongodb.net/?retryWrites=true&w=majority")
-    return mongoose.connection;
-}
+const connection = mysql.createConnection({
+    host: 'localhost',
+    user: 'root',
+    password: '',
+    database: 'mvc'
+  });
+
+  
+
+module.exports = connection;
 
 
-export default connect;
-
-
-//mongodb+srv://falconeri1501:<password>@cluster0.aposu55.mongodb.net/?retryWrites=true&w=majority
