@@ -7,6 +7,7 @@ const books  = require('./Models/Book')
 const app = express()
 app.use(express.json())
 
+
 array = {
     "id":"1"
 }
@@ -23,11 +24,6 @@ app.get('/',(req,res) =>{
 
 
 
-app.post('/books',(req,res) => {
-    books.push(req.body)
-    res.status(201).send('Created register')
-})
-
 app.get("/books/:id",(req,res) => {
     const index = searchBook(req.params.id)
     res.status(200).json(books[index])
@@ -39,11 +35,7 @@ app.put("/books/:id", (req,res) => {
     res.status(200).json(books)
 })
 
-app.delete("/books/:id",(req,res) => {
-    const index = searchBook(req.params.id)
-    books.splice(index,1)
-    res.status(200).json(books)
-})
+
 
 
 
